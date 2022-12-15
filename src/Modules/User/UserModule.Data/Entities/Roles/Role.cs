@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UserModule.Data.Entities.Roles;
 
- class Role:BaseEntity
+public class Role:BaseEntity
 {
     [Required]
     [MaxLength(50)]

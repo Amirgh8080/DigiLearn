@@ -3,7 +3,7 @@ using UserModule.Data.Entities.Roles;
 
 namespace UserModule.Data.Entities.Users;
 
-class UserRoles : BaseEntity
+public class UserRoles : BaseEntity
 {
     public Guid UserId { get; set; }
     public Guid RoleId { get; set; }
