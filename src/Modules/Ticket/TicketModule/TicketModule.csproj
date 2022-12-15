@@ -20,5 +20,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Common\Common.Infrastructure\Common.Infrastructure.csproj" />
 	</ItemGroup>
-
+	
+	
 </Project>
