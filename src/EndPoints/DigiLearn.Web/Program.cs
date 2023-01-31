@@ -1,7 +1,10 @@
+using UserModule.Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.InitUserModule(builder.Configuration);
 
 var app = builder.Build();
 

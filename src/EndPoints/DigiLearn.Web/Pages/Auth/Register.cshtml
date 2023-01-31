@@ -4,22 +4,17 @@
     Layout = "Shared/_AuthLayout";
     ViewData["title"] = "ثبت نام در سایت";
 }
-<form class="row register mt-4 pt-0">
-    <div class="userName mb-5 col-12 col-xl-6 col-lg-6">
-        <input type="text" class="form-control" placeholder="نام کاربری" required />
-    </div>
-    <div class="phone mb-5 col-12 col-xl-6 col-lg-6">
-        <input type="number" class="form-control" required placeholder="موبایل" />
+<form method="post" class="row register mt-4 pt-0">
+    <div class="text-danger col-12" asp-validation-summary="All"> </div>
+    <div class="phone mb-5 col-12">
+        <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="موبایل" />
     </div>
 
-    <div class="email mb-5 col-12 col-xl-12 col-lg-12">
-        <input type="email" class="form-control" placeholder="ایمیل" required />
-    </div>
     <div class="password mb-5 col-12 col-xl-6 col-lg-6">
-        <input type="password" class="form-control" required placeholder="کلمه عبور" />
+        <input type="password" class="form-control" asp-for="Password" placeholder="کلمه عبور" />
     </div>
     <div class="rePassword mb-5 col-12 col-xl-6 col-lg-6">
-        <input type="password" class="form-control" required placeholder="تکرار کلمه عبور" />
+        <input type="password" class="form-control" asp-for="ConfirmPassword" placeholder="تکرار کلمه عبور" />
     </div>
     <button class="btn btn-success btn-register  mt-4 d-flex justify-content-center align-items-center">
         <span> ثبت نام</span>
