@@ -13,6 +13,7 @@ public static class RegisterDependencyServices
 
         services.AddAutoMapper(typeof(RegisterDependencyServices).Assembly);
 
+
         return services;
     }
 }

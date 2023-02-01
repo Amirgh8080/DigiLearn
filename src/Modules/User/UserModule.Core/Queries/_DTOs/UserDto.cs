@@ -9,4 +9,11 @@ public class UserDto:BaseDto
     public string? Email { get; set; }
     public string Password { get; set; }
     public string Avatar { get; set; }
+    public List<RoleDto> Roles { get; set; } = new();
+}
+public class RoleDto : BaseDto
+{
+    public Guid Id { get; set; }
+    public string RoleTitle { get; set; }
+
 }

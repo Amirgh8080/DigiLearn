@@ -4,17 +4,18 @@
     Layout = "Shared/_AuthLayout";
     ViewData["title"] = "ورود به حساب کاربری";
 }
-<form class="login mt-4 pt-0">
-    <div class="emailOrUserName">
-        <p>ایمیل یا نام کاربری</p>
-        <input type="text" class="form-control" required />
-    </div>
-    <div class="password mt-5">
+<form method="post" class="login mt-4 pt-0">
+    <div class="text-danger col-12" asp-validation-summary="All"> </div>
+    <div class="phone mb-5 col-12">
+        <p>شماره تلفن همراه</p>
+        <input type="number" class="form-control" asp-for="PhoneNumber" />
+    </div> 
+    <div class="password mt-5 mb-5 col-12">
         <p>کلمه عبور </p>
-        <input type="password" class="form-control" required />
+        <input type="password" class="form-control" asp-for="Password" />
     </div>
     <div class="checkbox mt-4">
-        <input type="checkbox" id="check1" />
+        <input type="checkbox" id="check1" value="true" asp-for="RememberMe" />
         <span checkfor="check1">مرا بخاطر بسپار</span>
     </div>
     <button class="btn btn-success btn-login mt-4 d-flex justify-content-center align-items-center">
