@@ -50,12 +50,26 @@ namespace DigiLearn.Web.Pages.Auth
 
             var token = JwtTokenBuilder.BuildToken(user, _configuration);
 
-            HttpContext.Response.Cookies.Append("token", token, new CookieOptions()
+            if(RememberMe)
             {
-                HttpOnly = true,
-                Expires = (RememberMe? DateTime.Now.AddDays(15):DateTime.Now.AddHours(1)),
-                Secure = true
-            });
+
+                HttpContext.Response.Cookies.Append("token", token, new CookieOptions()
+                {
+                    HttpOnly = true,
+                    Expires = DateTime.Now.AddDays(30),
+                    Secure = true
+                });
+            }
+            else
+            {
+
+                HttpContext.Response.Cookies.Append("token", token, new CookieOptions()
+                {
+                    HttpOnly = true,
+                    Secure = true
+                });
+            }
+
 
             return RedirectToPage("../Index");
         }
