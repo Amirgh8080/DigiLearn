@@ -1,5 +1,6 @@
 ﻿using Common.Application;
 using MediatR;
+using UserModule.Core.Commands.Users.ChangePassword;
 using UserModule.Core.Commands.Users.Edit;
 using UserModule.Core.Commands.Users.Register;
 using UserModule.Core.Queries._DTOs;
@@ -11,6 +12,7 @@ public interface IUserFacade
 {
     Task<OperationResult<Guid>> RegisterUser(RegisterUserCommand command);
     Task<OperationResult> EditUser(EditUserCommand command);
+    Task<OperationResult> ChangegUserPassword(ChangeUserPasswordCommand command);
 
     Task<UserDto?> GetUserByPhoneNumber(string phoneNumber);
 }
@@ -21,6 +23,11 @@ public class UserFacade : IUserFacade
     public UserFacade(IMediator mediator)
     {
         _mediator = mediator;
+    }
+
+    public async Task<OperationResult> ChangegUserPassword(ChangeUserPasswordCommand command)
+    {
+        return await _mediator.Send(command);
     }
 
     public async Task<OperationResult> EditUser(EditUserCommand command)

@@ -1,0 +1,10 @@
+.field-validation-error {
+    font-size: 13px;
+    color: red;
+}
+.form-element-row label{
+    font-size: 14px;
+}
+.field-validation-error{
+    border-color: red;
+}

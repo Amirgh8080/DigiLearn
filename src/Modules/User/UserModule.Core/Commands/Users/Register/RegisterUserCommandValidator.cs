@@ -15,7 +15,7 @@ public class RegisterUserCommandValidator:AbstractValidator<RegisterUserCommand>
         RuleFor(r => r.Password)
             .NotEmpty()
             .NotNull()
-            .MinimumLength(6).WithMessage("رمز عبور باید بیشتر از 6 کارکتر باشد");
+            .MinimumLength(6).WithMessage("کلمه عبور باید بیشتر از 6 کارکتر باشد");
 
     }
 }
