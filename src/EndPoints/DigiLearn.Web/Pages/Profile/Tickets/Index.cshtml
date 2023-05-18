@@ -3,7 +3,7 @@
 @using TicketModule.Data.Entities;
 @model DigiLearn.Web.Pages.Profile.Tickets.IndexModel
 @{
-    //ViewData["Title"] = "  تیکت ها";
+    ViewData["Title"] = "  تیکت ها";
     //Layout = "Shared/_ProfileLayout";
     var counter = 1;
 }
@@ -98,7 +98,7 @@
                                 </table>
                             </div>
                             <hr class="mt-0">
-                            <partial name="Shared/_Pagination" model="Model.FilterResult" />
+                            @*<partial name="Shared/_Pagination" model="Model.FilterResult" />*@
                         </div>
                     </div>
 

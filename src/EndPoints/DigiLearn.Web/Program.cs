@@ -8,7 +8,8 @@ var services = builder.Services;
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services
     .InitUserModule(builder.Configuration);
-  builder.Services.InitTicketModule(builder.Configuration);
+  builder.Services
+    .InitTicketModule(builder.Configuration);
 
 services.AddJwtAuthentication(builder.Configuration);
 

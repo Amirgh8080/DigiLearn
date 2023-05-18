@@ -5,10 +5,9 @@ namespace TicketModule.Data;
 
 class TicketContext : DbContext
 {
-    public TicketContext(DbContextOptions<DbContext> options) : base(options)
+    public TicketContext(DbContextOptions<TicketContext> options) : base(options)
     {
     }
-
 
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<TicketMessage> TicketMessages { get; set; }
