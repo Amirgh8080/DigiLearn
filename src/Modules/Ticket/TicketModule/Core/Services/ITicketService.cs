@@ -15,7 +15,7 @@ public interface ITicketService
     Task<OperationResult> CloseTicket(Guid ticketId);
 
     
-    Task<TicketDto> GetTicket(Guid ticketId);
+    Task<TicketDto?> GetTicket(Guid ticketId);
     Task<TicketFilterResult> GetTicketsByFilter(TicketFilterParam filterParams);
 }
 class TicketService : ITicketService
@@ -55,7 +55,7 @@ class TicketService : ITicketService
         return OperationResult<Guid>.Success(ticket.Id);
     }
 
-    public async Task<TicketDto> GetTicket(Guid ticketId)
+    public async Task<TicketDto?> GetTicket(Guid ticketId)
     {
         var ticket =await _context.Tickets
                             .Include(t => t.Messages)
@@ -104,7 +104,8 @@ class TicketService : ITicketService
             UserId = command.UserId,
             UserFullName = command.OwnerFullName
         };
-
+        if (string.IsNullOrWhiteSpace(command.Text))
+            return OperationResult.Error("متن پیام را وارد کنید");
         if(ticket.UserId == command.UserId)
         {
             ticket.Status = TicketStatus.Pending;
