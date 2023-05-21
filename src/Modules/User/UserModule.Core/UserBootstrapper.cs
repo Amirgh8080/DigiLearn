@@ -18,6 +18,7 @@ public static class UserBootstrapper
         });
 
         services.AddScoped<IUserFacade, UserFacade>();
+        services.AddScoped<INotificationFacade, NotificationFacade>();
 
         services.AddValidatorsFromAssembly(typeof(UserBootstrapper).Assembly);
         services.AddMediatR(typeof(UserBootstrapper).Assembly);
