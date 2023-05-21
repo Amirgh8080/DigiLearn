@@ -13,7 +13,7 @@ public class DeleteItem : TagHelper
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         output.TagName = "button";
-        output.Attributes.Add("onClick", $"DeleteItem('{Url}','{Description}')");
+        output.Attributes.Add("onClick", $"deleteItem('{Url}','{Description}')");
         output.Attributes.Add("class", Class);
         base.Process(context, output);
     }
