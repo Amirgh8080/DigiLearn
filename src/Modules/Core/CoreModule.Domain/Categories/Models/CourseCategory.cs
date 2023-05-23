@@ -1,13 +1,13 @@
 ﻿using Common.Domain;
 using Common.Domain.Exceptions;
 using Common.Domain.Utils;
-using CoreModule.Domain.Category.DomainServices;
+using CoreModule.Domain.Categories.DomainServices;
 
-namespace CoreModule.Domain.Category.Models;
+namespace CoreModule.Domain.Categories.Models;
 
-public class CourseCategory : BaseEntity
+public class CourseCategory : AggregateRoot
 {
-    public CourseCategory(string title, string slug, Guid? parentId, ICourseDomainService domainService)
+    public CourseCategory(string title, string slug, Guid? parentId, ICategoryDomainService domainService)
     {
         Guard(title, slug);
         if (domainService.DoesSlugExist(slug))
@@ -23,11 +23,11 @@ public class CourseCategory : BaseEntity
     public string Slug { get; private set; }
     public Guid? ParentId { get; private set; }
 
-    public void Edig(string title, string slug, ICourseDomainService domainService)
+    public void Edig(string title, string slug, ICategoryDomainService domainService)
     {
         Guard(title, slug);
         if (Slug != slug)
-            if (domainService.DoesSlugExist(slug))  
+            if (domainService.DoesSlugExist(slug))
                 throw new InvalidDomainDataException("Slug Already Exists");
 
         Title = title;

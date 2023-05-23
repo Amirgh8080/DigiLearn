@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Courses\Edit\" />
+    <Folder Include="Courses\Episodes\Add\" />
+    <Folder Include="Courses\Episodes\Accept\" />
+    <Folder Include="Courses\Episodes\Delete\" />
+    <Folder Include="Courses\Episodes\Edit\" />
+    <Folder Include="Courses\Sections\AddSection\" />
+    <Folder Include="Courses\Sections\EditSection\" />
+    <Folder Include="Courses\Sections\DeleteSection\" />
+    <Folder Include="Courses\Sections\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Application\Common.Application.csproj" />
+    <ProjectReference Include="..\CoreModule.Domain\CoreModule.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
