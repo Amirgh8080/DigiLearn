@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Category\Repositories\" />
+    <Folder Include="Course\Exceptions\" />
+    <Folder Include="Course\Events\" />
+    <Folder Include="Teacher\DomainServices\" />
+    <Folder Include="Teacher\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Domain\Common.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
