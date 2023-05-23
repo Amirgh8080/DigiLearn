@@ -75,12 +75,15 @@
 
                                     <a asp-page="Notifications" class="btn btn-info btn-block">نمایش همه</a>
                                 }
-                                <div class="no-item text-center">
-                                    <p>
-                                        <i class="fa fa-info text-info"></i>
-                                        موردی برای نمایش وجود ندارد
-                                    </p>
-                                </div>
+                                else
+                                {
+                                    <div class="no-item text-center">
+                                        <p>
+                                            <i class="fa fa-info text-info"></i>
+                                            موردی برای نمایش وجود ندارد
+                                        </p>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

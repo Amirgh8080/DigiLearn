@@ -34,7 +34,7 @@ namespace DigiLearn.Web.Pages.Profile
 
         public async Task<IActionResult> OnPostSeenNotification(Guid notificationId)
         {
-            var result = await _notificationFacade.Seen(new SeenNotificationCommand(User.GetUserId(), notificationId;)
+            var result = await _notificationFacade.Seen(new SeenNotificationCommand(User.GetUserId(), notificationId));
             return RedirectAndShowAlert(result, RedirectToPage("Notifications"));
         }
 

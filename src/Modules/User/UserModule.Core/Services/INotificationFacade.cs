@@ -48,7 +48,7 @@ class NotificationFacade : INotificationFacade
         return await _mediator.Send(new GetNotificationByFilterQuery(filterParams));
     }
 
-    public Task<OperationResult> Seen(SeenNotificationCommand command)
+    public async Task<OperationResult> Seen(SeenNotificationCommand command)
     {
         return await _mediator.Send(command);
     }
