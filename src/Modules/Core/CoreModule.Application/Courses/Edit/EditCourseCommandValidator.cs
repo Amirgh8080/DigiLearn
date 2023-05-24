@@ -2,20 +2,16 @@
 using Common.Application.Validation.FluentValidations;
 using FluentValidation;
 
-namespace CoreModule.Application.Courses.Create;
+namespace CoreModule.Application.Courses.Edit;
 
-public class CreateCourseCommandValidator : AbstractValidator<CreateCourseCommand>
+public class EditCourseCommandValidator :AbstractValidator<EditCourseCommand>
 {
-    public CreateCourseCommandValidator()
+    public EditCourseCommandValidator()
     {
         RuleFor(t => t.ImageFile)
-            .NotEmpty()
-            .NotNull().WithMessage(ValidationMessages.Required)
-            .JustImageFile();
+           .JustImageFile();
 
         RuleFor(t => t.TrailerFile)
-            .NotNull()
-            .NotEmpty().WithMessage(ValidationMessages.Required)
             .JustValidFile();
 
         RuleFor(t => t.Description)
@@ -26,7 +22,5 @@ public class CreateCourseCommandValidator : AbstractValidator<CreateCourseComman
         RuleFor(t => t.Slug)
             .NotNull()
             .NotEmpty().WithMessage(ValidationMessages.Required);
-
-
     }
 }

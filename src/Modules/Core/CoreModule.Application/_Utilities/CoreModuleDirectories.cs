@@ -6,6 +6,5 @@ public class CoreModuleDirectories
 
     public static string CourseImages = "wwwroot/core/course";
 
-    public string CourseDemo(Guid CourseId) => $"wwwroot/core/course/{CourseId}";
-    public string test() => "";
+    public static string CourseDemo(Guid CourseId) => $"course/{CourseId}";
 }

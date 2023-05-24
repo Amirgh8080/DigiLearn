@@ -28,10 +28,12 @@ public class Course : AggregateRoot
         CourseLevel = courseLevel;
         CourseStatus = CourseStatus.StartsSoon;
 
-        Sections = new();
         SubCategoryId = subCategoryId;
         CategoryId = categoryId;
         Slug = slug.ToSlug();
+        
+        
+        Sections = new();
     }
 
     public Guid TeacherId { get; private set; }
@@ -53,6 +55,31 @@ public class Course : AggregateRoot
     public List<Section> Sections { get; }
 
 
+    public void Edit( string title, string description, string imageName, string trailerName, int price,
+        SeoData seoData, CourseLevel courseLevel,CourseStatus status, Guid subCategoryId, Guid categoryId, string slug
+        , ICourseDomainService domainService)
+    {
+        Guard(title, description, imageName, trailerName, slug);
+        if(Slug != slug)
+        {
+            if (domainService.DoesSlugExists(slug))
+                throw new InvalidDomainDataException("Slug Already Exists");
+        }
+
+        Title = title;
+        Description = description;
+        ImageName = imageName;
+        TrailerName = trailerName;
+        Price = price;
+        LastUpdate = DateTime.Now;
+        SeoData = seoData;
+        CourseLevel = courseLevel;
+        CourseStatus = status;
+        SubCategoryId = subCategoryId;
+        CategoryId = categoryId;
+        Slug = slug.ToSlug();
+
+    }
     public void AddSecion(int displayOrder, string title)
     {
         if (Sections.Any(s => s.Title == title))

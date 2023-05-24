@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Courses\Edit\" />
     <Folder Include="Courses\Episodes\Add\" />
     <Folder Include="Courses\Episodes\Accept\" />
     <Folder Include="Courses\Episodes\Delete\" />
