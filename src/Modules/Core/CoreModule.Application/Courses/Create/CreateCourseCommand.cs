@@ -46,7 +46,6 @@ class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
         Guid id = Guid.NewGuid();
         var trailerName = "";
         var imageName = await _localFileService.SaveFileAndGenerateName(request.ImageFile, CoreModuleDirectories.CourseImages);
-        CoreModuleDirectories.
         if (request.TrailerFile != null)
         {
             if (request.TrailerFile.IsValidVideoFile() == false)
