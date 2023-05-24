@@ -23,7 +23,7 @@ public class CourseCategory : AggregateRoot
     public string Slug { get; private set; }
     public Guid? ParentId { get; private set; }
 
-    public void Edig(string title, string slug, ICategoryDomainService domainService)
+    public void Edit(string title, string slug, ICategoryDomainService domainService)
     {
         Guard(title, slug);
         if (Slug != slug)

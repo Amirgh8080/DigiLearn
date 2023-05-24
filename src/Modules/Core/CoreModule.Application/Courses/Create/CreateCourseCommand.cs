@@ -1,10 +1,15 @@
 ﻿using Common.Application;
+using Common.Application.FileUtil;
+using Common.Application.FileUtil.Interfaces;
+using Common.Application.Validation;
 using Common.Domain.ValueObjects;
+using CoreModule.Application._Utilities;
 using CoreModule.Domain.Categories.DomainServices;
 using CoreModule.Domain.Course.DomainServices;
 using CoreModule.Domain.Course.Enums;
+using CoreModule.Domain.Course.Models;
 using CoreModule.Domain.Course.Repository;
-using FluentValidation;
+using Microsoft.AspNetCore.Http;
 
 namespace CoreModule.Application.Courses.Create;
 
@@ -16,19 +21,19 @@ public class CreateCourseCommand : IBaseCommand
     public string Title { get; set; }
     public string Slug { get; set; }
     public string Description { get; set; }
-    public string ImageName { get;  set; }
-    public string TrailerName { get;  set; }
-    public int Price { get;  set; }
-    public DateTime LastUpdate { get;  set; }
-    public SeoData SeoData { get;  set; }
+    public IFormFile ImageFile { get; set; }
+    public IFormFile TrailerFile { get; set; }
+    public int Price { get; set; }
+    public SeoData SeoData { get; set; }
 
-    public CourseLevel CourseLevel { get;  set; }
-    public CourseStatus CourseStatus { get;  set; }
+    public CourseLevel CourseLevel { get; set; }
 }
-public class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
+class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
 {
     private readonly ICourseRepository _courseRepository;
     private readonly ICourseDomainService _courseDomainService;
+    private readonly IFtpFileService _ftpFileService;
+    private readonly ILocalFileService _localFileService;
 
     public CreateCourseCommandHandler(ICourseRepository courseRepository, ICourseDomainService courseDomainService)
     {
@@ -36,15 +41,32 @@ public class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseComman
         _courseDomainService = courseDomainService;
     }
 
-    public Task<OperationResult> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
+    public async Task<OperationResult> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
-}
-public class CreateCourseCommandValidator : AbstractValidator<CreateCourseCommand>
-{
-    public CreateCourseCommandValidator()
-    {
+        Guid id = Guid.NewGuid();
+        var trailerName = "";
+        var imageName = await _localFileService.SaveFileAndGenerateName(request.ImageFile, CoreModuleDirectories.CourseImages);
+        CoreModuleDirectories.
+        if (request.TrailerFile != null)
+        {
+            if (request.TrailerFile.IsValidVideoFile() == false)
+            {
+                return OperationResult.Error("فایل نامعتبر است");
+            }
+           trailerName = await _ftpFileService.SaveFileAndGenerateName(request.TrailerFile, CoreModuleDirectories.CourseDemo(id));
+        }
+        else
+        {
+            return OperationResult.Error(ValidationMessages.required("فایل فیلم معرفی"));
+        }
 
+
+
+        var course = new Course(request.TeacherId, request.Title, request.Description, imageName, trailerName, request.Price
+            , request.SeoData, request.CourseLevel, request.SubCategoryId, request.CategoryId, request.Slug
+            , _courseDomainService);
+
+
+        return OperationResult.Success();
     }
 }

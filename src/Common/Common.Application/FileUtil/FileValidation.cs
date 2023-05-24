@@ -22,6 +22,18 @@ public static class FileValidation
         }
         return false;
     }
+    public static bool IsValidVideoFile(this IFormFile file)
+    {
+        if (file == null) return false;
+        var path = Path.GetExtension(file.FileName);
+        path = path.ToLower();
+        if (path == ".mp4" || path == ".mp3" || path == ".wav" ||
+            path == ".m4a" || path == ".wmv" || path == ".mkv")
+        {
+            return true;
+        }
+        return false;
+    }
 
     public static bool IsValidImageFile(string fileName)
     {

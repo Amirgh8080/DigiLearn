@@ -21,7 +21,7 @@ public class EditCategoryCommandHandler : IBaseCommandHandler<EditCategoryComman
         if (category == null)
             return OperationResult.NotFound();
 
-        category.Edig(request.Title,request.Slug,_categoryDomainService)
+        category.Edit(request.Title, request.Slug, _categoryDomainService);
         await _categoryRepository.Save();
         return OperationResult.Success();
     }
