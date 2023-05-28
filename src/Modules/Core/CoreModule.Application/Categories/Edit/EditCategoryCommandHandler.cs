@@ -6,10 +6,10 @@ namespace CoreModule.Application.Categories.Edit;
 
 public class EditCategoryCommandHandler : IBaseCommandHandler<EditCategoryCommand>
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly ICourseCategoryRepository _categoryRepository;
     private readonly ICategoryDomainService _categoryDomainService;
 
-    public EditCategoryCommandHandler(ICategoryRepository categoryRepository, ICategoryDomainService categoryDomainService)
+    public EditCategoryCommandHandler(ICourseCategoryRepository categoryRepository, ICategoryDomainService categoryDomainService)
     {
         _categoryRepository = categoryRepository;
         _categoryDomainService = categoryDomainService;

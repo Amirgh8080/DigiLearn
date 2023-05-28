@@ -5,9 +5,9 @@ namespace CoreModule.Application.Categories.Delete;
 
 public class DeleteCategoryCommandHandler : IBaseCommandHandler<DeleteCategoryCommand>
 {
-    private readonly ICategoryRepository _categoryRepository;
+    private readonly ICourseCategoryRepository _categoryRepository;
 
-    public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository)
+    public DeleteCategoryCommandHandler(ICourseCategoryRepository categoryRepository)
     {
         _categoryRepository = categoryRepository;
     }

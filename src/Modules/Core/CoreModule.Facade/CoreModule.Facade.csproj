@@ -7,16 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Course\Exceptions\" />
-    <Folder Include="Course\Events\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common.Domain\Common.Domain.csproj" />
+    <ProjectReference Include="..\CoreModule.Application\CoreModule.Application.csproj" />
+    <ProjectReference Include="..\CoreModule.Query\CoreModule.Query.csproj" />
   </ItemGroup>
 
 </Project>

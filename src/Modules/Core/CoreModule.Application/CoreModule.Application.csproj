@@ -7,14 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Courses\Episodes\Add\" />
-    <Folder Include="Courses\Episodes\Accept\" />
     <Folder Include="Courses\Episodes\Delete\" />
     <Folder Include="Courses\Episodes\Edit\" />
     <Folder Include="Courses\Sections\AddSection\" />
     <Folder Include="Courses\Sections\EditSection\" />
     <Folder Include="Courses\Sections\DeleteSection\" />
     <Folder Include="Courses\Sections\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>

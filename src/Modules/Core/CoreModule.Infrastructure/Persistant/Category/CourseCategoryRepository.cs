@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CoreModule.Infrastructure.Persistant.Category;
 
-class CategoryRepository : BaseRepository<CourseCategory, CoreModuleEfContext>, ICategoryRepository
+class CourseCategoryRepository : BaseRepository<CourseCategory, CoreModuleEfContext>, ICourseCategoryRepository
 {
-    public CategoryRepository(CoreModuleEfContext context) : base(context)
+    public CourseCategoryRepository(CoreModuleEfContext context) : base(context)
     {
     }
 

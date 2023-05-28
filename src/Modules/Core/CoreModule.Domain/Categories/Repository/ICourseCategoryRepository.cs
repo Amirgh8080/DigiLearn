@@ -3,7 +3,7 @@ using CoreModule.Domain.Categories.Models;
 
 namespace CoreModule.Domain.Categories.Repository;
 
-public interface ICategoryRepository : IBaseRepository<CourseCategory>
+public interface ICourseCategoryRepository : IBaseRepository<CourseCategory>
 {
     Task Delete(CourseCategory courseCategory);
 }
