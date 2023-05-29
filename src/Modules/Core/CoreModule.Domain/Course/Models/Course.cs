@@ -52,7 +52,7 @@ public class Course : AggregateRoot
     public CourseStatus CourseStatus { get; private set; }
 
 
-    public List<Section> Sections { get; }
+    public List<Section> Sections { get; private set; }
 
 
     public void Edit( string title, string description, string imageName, string trailerName, int price,

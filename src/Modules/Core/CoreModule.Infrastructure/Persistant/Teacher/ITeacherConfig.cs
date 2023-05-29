@@ -10,6 +10,7 @@ public class ITeacherConfig : IEntityTypeConfiguration<Domain.Teacher.Models.Tea
 
     public void Configure(EntityTypeBuilder<Domain.Teacher.Models.Teacher> builder)
     {
+        builder.ToTable("Teachers");
         builder.HasKey(b => b.Id);
         builder.HasIndex(b => b.UserName).IsUnique();
        
