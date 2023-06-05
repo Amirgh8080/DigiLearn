@@ -29,6 +29,7 @@ class QueryContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("dbo");
+        
 
  
         modelBuilder.Entity<TeacherQueryModel>(builder =>
