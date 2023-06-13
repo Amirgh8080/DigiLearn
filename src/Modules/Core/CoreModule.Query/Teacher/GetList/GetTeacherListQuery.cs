@@ -11,7 +11,7 @@ public class GetTeacherListQueryHandler : IQueryHandler<GetTeacherListQuery, Lis
 {
     private readonly QueryContext _context;
 
-    public GetTeacherListQueryHandler(QueryContext context)
+    private GetTeacherListQueryHandler(QueryContext context)
     {
         _context = context;
     }

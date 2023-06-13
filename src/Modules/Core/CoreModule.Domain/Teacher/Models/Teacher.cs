@@ -8,6 +8,10 @@ namespace CoreModule.Domain.Teacher.Models;
 
 public class Teacher : AggregateRoot
 {
+    private Teacher()
+    {
+
+    }
     public Teacher(Guid userId, string userName, string cvFileName, ITeacherDomainService domainService)
     {
         NullOrEmptyDomainDataException.CheckString(userName, nameof(userName));
