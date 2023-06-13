@@ -7,11 +7,11 @@ namespace CoreModule.Query.Teacher.GetList;
 
 public record GetTeacherListQuery() : IQuery<List<TeacherDto>>;
 
-public class GetTeacherListQueryHandler : IQueryHandler<GetTeacherListQuery, List<TeacherDto>>
+class GetTeacherListQueryHandler : IQueryHandler<GetTeacherListQuery, List<TeacherDto>>
 {
     private readonly QueryContext _context;
 
-    private GetTeacherListQueryHandler(QueryContext context)
+    public GetTeacherListQueryHandler(QueryContext context)
     {
         _context = context;
     }

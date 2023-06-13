@@ -53,9 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreModule.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreModule.Query", "src\Modules\Core\CoreModule.Query\CoreModule.Query.csproj", "{6551D811-A9CA-45D5-AC94-79D7835E7278}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreModule.Facade", "src\Modules\Core\CoreModule.Facade\CoreModule.Facade.csproj", "{4BCDFF5D-74D8-4EAF-B90F-CBE5EEEA4C12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreModule.Facade", "src\Modules\Core\CoreModule.Facade\CoreModule.Facade.csproj", "{4BCDFF5D-74D8-4EAF-B90F-CBE5EEEA4C12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreModule.Configuration", "src\Modules\Core\CoreModule.Configuration\CoreModule.Configuration.csproj", "{30E81310-BC99-4225-9462-0B300A2B5934}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreModule.Configuration", "src\Modules\Core\CoreModule.Configuration\CoreModule.Configuration.csproj", "{30E81310-BC99-4225-9462-0B300A2B5934}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,7 +24,7 @@ public class Teacher : AggregateRoot
             throw new InvalidDomainDataException("UserName Already Exists");
 
         UserId = userId;
-        UserName = userName;
+        UserName = userName.ToLower();
         CvFileName = cvFileName;
         Status = TeacherStatus.Pending;
     }

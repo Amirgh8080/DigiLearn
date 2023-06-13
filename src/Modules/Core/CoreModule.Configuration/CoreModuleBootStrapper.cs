@@ -1,4 +1,10 @@
-﻿using CoreModule.Application.Categories.Create;
+﻿using CoreModule.Application.Categories;
+using CoreModule.Application.Categories.Create;
+using CoreModule.Application.Courses;
+using CoreModule.Application.Teacheres;
+using CoreModule.Domain.Categories.DomainServices;
+using CoreModule.Domain.Course.DomainServices;
+using CoreModule.Domain.Teacher.DomainServices;
 using CoreModule.Facade;
 using CoreModule.Infrastructure;
 using CoreModule.Query;
@@ -20,6 +26,10 @@ namespace CoreModule.Configuration
             services.AddMediatR(typeof(CreateCategoryCommand).Assembly);
             services.AddValidatorsFromAssembly(typeof(CreateCategoryCommand).Assembly);
 
+
+            services.AddScoped<ICourseDomainService,CourseDomainService>();
+            services.AddScoped<ICategoryDomainService,CategoryDomainService>();
+            services.AddScoped<ITeacherDomainService,TeacherDomainServices>();
 
             return services;
         }
