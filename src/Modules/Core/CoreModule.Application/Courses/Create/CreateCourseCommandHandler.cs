@@ -44,7 +44,7 @@ class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
 
         var course = new Course(request.TeacherId, request.Title, request.Description, imageName, trailerName, request.Price
             , request.SeoData, request.CourseLevel, request.SubCategoryId, request.CategoryId, request.Slug
-            , _courseDomainService)
+            ,request.Status, _courseDomainService)
         {
             Id = id
         };

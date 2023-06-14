@@ -15,7 +15,7 @@ public class Course : AggregateRoot
     }
     public Course(Guid teacherId, string title, string description, string imageName, string trailerName, int price,
         SeoData seoData, CourseLevel courseLevel, Guid subCategoryId, Guid categoryId, string slug
-        ,ICourseDomainService domainService)
+        ,CourseActionStatus status ,ICourseDomainService domainService)
     {
         Guard(title, description, imageName, trailerName,slug);
         if (domainService.DoesSlugExists(slug))
@@ -31,6 +31,7 @@ public class Course : AggregateRoot
         SeoData = seoData;
         CourseLevel = courseLevel;
         CourseStatus = CourseStatus.StartsSoon;
+        Status = status;
 
         SubCategoryId = subCategoryId;
         CategoryId = categoryId;
@@ -54,6 +55,7 @@ public class Course : AggregateRoot
 
     public CourseLevel CourseLevel { get; private set; }
     public CourseStatus CourseStatus { get; private set; }
+    public CourseActionStatus Status { get; private set; }
 
 
     public List<Section> Sections { get; private set; }

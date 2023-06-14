@@ -1,6 +1,8 @@
 ﻿using Common.Application;
 using CoreModule.Application.Courses.Create;
 using CoreModule.Application.Courses.Edit;
+using CoreModule.Query.Course._DTOs;
+using CoreModule.Query.Course.GetByFilter;
 using MediatR;
 
 namespace CoreModule.Facade.Course;
@@ -9,8 +11,8 @@ public interface ICourseFacade
 {
     Task<OperationResult> Create(CreateCourseCommand command);
     Task<OperationResult> Edit(EditCourseCommand command);
-    //Task<OperationResult> Create(CreateCourseCommand command);
-   // Task<OperationResult> Create(CreateCourseCommand command);
+
+    Task<CourseFilterResult> GetCourseByFilter(CourseFilterParams param);
 }
 public class CourseFacade : ICourseFacade
 {
@@ -29,5 +31,10 @@ public class CourseFacade : ICourseFacade
     public async Task<OperationResult> Edit(EditCourseCommand command)
     {
         return await _mediator.Send(command);
+    }
+
+    public async Task<CourseFilterResult> GetCourseByFilter(CourseFilterParams param)
+    {
+        return await _mediator.Send(new GetCoursesByFilterQuery(param));
     }
 }
