@@ -16,10 +16,12 @@ class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
     private readonly IFtpFileService _ftpFileService;
     private readonly ILocalFileService _localFileService;
 
-    public CreateCourseCommandHandler(ICourseRepository courseRepository, ICourseDomainService courseDomainService)
+    public CreateCourseCommandHandler(ICourseRepository courseRepository, ICourseDomainService courseDomainService, ILocalFileService localFileService, IFtpFileService ftpFileService)
     {
         _courseRepository = courseRepository;
         _courseDomainService = courseDomainService;
+        _localFileService = localFileService;
+        _ftpFileService = ftpFileService;
     }
 
     public async Task<OperationResult> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
@@ -33,7 +35,8 @@ class CreateCourseCommandHandler : IBaseCommandHandler<CreateCourseCommand>
             {
                 return OperationResult.Error("فایل نامعتبر است");
             }
-           trailerName = await _ftpFileService.SaveFileAndGenerateName(request.TrailerFile, CoreModuleDirectories.CourseDemo(id));
+            // trailerName = await _ftpFileService.SaveFileAndGenerateName(request.TrailerFile, CoreModuleDirectories.CourseDemo(id));
+            trailerName = "trailerfile.mp4"; 
         }
         else
         {

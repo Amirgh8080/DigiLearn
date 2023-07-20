@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoreModule.Query._Data.Entities;
 
-[Table("Section",Schema ="course")]
+[Table("Sections",Schema ="course")]
 class SectionQueryModel : BaseEntity
 {
     public Guid CourseId { get; set; }
