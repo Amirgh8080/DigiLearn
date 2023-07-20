@@ -19,6 +19,8 @@ class GetCourseByIdQueryHandler : IQueryHandler<GetCourseByIdQuery, CourseDto?>
     public async Task<CourseDto?> Handle(GetCourseByIdQuery request, CancellationToken cancellationToken)
     {
         var course = await _context.Courses
+            .Include(c=>c.Sections)
+            .ThenInclude(s=>s.Episodes)
             .SingleOrDefaultAsync(c => c.Id == request.Id,cancellationToken : cancellationToken);
         if (course == null)
             return null;

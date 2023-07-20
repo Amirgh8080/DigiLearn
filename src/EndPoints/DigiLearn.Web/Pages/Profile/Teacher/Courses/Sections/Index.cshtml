@@ -7,6 +7,8 @@
 
 
 <div class="row ">
+    <a asp-page="Add" asp-route-courseId="@Model.Course.Id" class="btn btn-save mr-2 mb-4 float-right">افزودن فصل جدید</a>
+
     <div class="col-12 info shadow pl-0 pr-0">
         <p class="title">
             <i class="fa fa-paper-plane"></i>
@@ -14,21 +16,20 @@
         </p>
 
         <br>
-        <a asp-page="Add" class="btn btn-save mr-2 mb-4 float-right">افزودن فصل جدید</a>
         <div class="info-body p-2">
             <div id="accordion">
                 @foreach (var item in Model.Course.Sections.OrderBy(s=>s.DisplayOrder))
                 {
                     <div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header" id="h_@item.Id">
                             <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id">
                                     @item.Title
                                 </button>
                             </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#accordion">
                             <div class="card-body">
                                 body
                             </div>
