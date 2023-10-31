@@ -27,6 +27,10 @@ class GetCourseByIdQueryHandler : IQueryHandler<GetCourseByIdQuery, CourseDto?>
         return new CourseDto()
         {
             Id = course.Id,
+            TeacherId = course.TeacherId,
+            Slug = course.Slug,
+            SubCategoryId = course.SubCategoryId,
+            TrailerName = course.TrailerName,
             Title = course.Title,
             CategoryId = course.CategoryId,
             CourseLevel = course.CourseLevel,

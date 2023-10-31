@@ -5,6 +5,10 @@ namespace CoreModule.Infrastructure.Persistant.Users;
 
 class User:BaseEntity
 {
+    private User()
+    {
+
+    }
     [MaxLength(12)]
     public string PhoneNumber { get; set; }
     

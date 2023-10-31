@@ -40,7 +40,9 @@ namespace Common.Application.Validation.FluentValidations
             });
         }
 
-        public static IRuleBuilderOptionsConditions<T, TProperty> JustValidFile<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder, string errorMessage = "فایل نامعتبر است") where TProperty : IFormFile
+        public static IRuleBuilderOptionsConditions<T, TProperty> 
+            JustValidFile<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder,
+            string errorMessage = "فایل نامعتبر است") where TProperty : IFormFile
         {
             return ruleBuilder.Custom((file, context) =>
             {
