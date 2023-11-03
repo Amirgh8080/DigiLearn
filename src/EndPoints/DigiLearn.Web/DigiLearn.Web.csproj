@@ -9,6 +9,7 @@
   <ItemGroup>
     <Content Remove="Pages\Profile\Index.cshtml" />
     <Content Remove="Pages\Profile\RegisterTeacher.cshtml" />
+    <Content Remove="Pages\Profile\Teacher\Courses\Sections\Episodes\Add.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,15 +42,21 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Pages\Profile\Index.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\Profile\RegisterTeacher.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Profile\Teacher\Courses\Sections\Episodes\Add.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Pages\Profile\Index.cshtml" />
     <None Include="Pages\Profile\RegisterTeacher.cshtml" />
+    <None Include="Pages\Profile\Teacher\Courses\Sections\Episodes\Add.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Pages\Profile\RegisterTeacher.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Profile\Teacher\Courses\Sections\Episodes\Add.cshtml" />
   </ItemGroup>
 
 </Project>

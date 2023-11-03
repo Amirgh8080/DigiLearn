@@ -1,8 +1,9 @@
-using CoreModule.Application.Courses.Sections.AddSection;
+﻿using CoreModule.Application.Courses.Sections.AddSection;
 using CoreModule.Facade.Course;
 using DigiLearn.Web.Infrastructure;
 using DigiLearn.Web.Infrastructure.RazorUtils;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace DigiLearn.Web.Pages.Profile.Teacher.Courses.Sections;
 
@@ -17,7 +18,12 @@ public class AddModel : BaseRazor
         _courseFacade = courseFacade;
     }
 
+    [Display(Name = "عنوان")]
+    [Required(ErrorMessage = "{0} را وارد کنید")]
     public string Title { get; set; }
+
+    [Display(Name = "ترتیب نمایش")]
+    [Required(ErrorMessage = "{0} را وارد کنید")]
     public int DisplayOrder { get; set; }
 
     public void OnGet()

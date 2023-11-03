@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "مدریت فصل های دوره" + $"'{Model.Course.Title}'";
     Layout = "Shared/_ProfileLayout";
+    int counter = 0;
 }
 
 
@@ -14,11 +15,9 @@
             <i class="fa fa-paper-plane"></i>
             @ViewData["Title"]
         </p>
-
-        <br>
-        <div class="info-body p-2">
+        <div class="info-body">
             <div id="accordion">
-                @foreach (var item in Model.Course.Sections.OrderBy(s=>s.DisplayOrder))
+                @foreach (var item in Model.Course.Sections.OrderBy(s => s.DisplayOrder))
                 {
                     <div class="card">
                         <div class="card-header" id="h_@item.Id">
@@ -31,7 +30,39 @@
 
                         <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#accordion">
                             <div class="card-body">
-                                body
+                                <a asp-page="Episodes/Add" asp-route-courseId="@Model.Course.Id" asp-route-sectionId="@item.Id" class="btn btn-save mr-2 mb-4 float-right">افزودن فصل جدید</a>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>عنوان</th>
+                                            <th>زمان</th>
+                                            <th>وضعیت</th>
+                                            <th>عملیات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var episode in item.Episodes)
+                                        {
+                                            <tr>
+                                                <td>@counter++</td>
+                                                <td>@episode.Title</td>
+                                                <td>@episode.TimeSpan</td>
+                                                <td>
+                                                    @if(episode.IsActive)
+                                                    {
+                                                        <label>فعال</label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>غیرفعال</label>
+                                                    }
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
