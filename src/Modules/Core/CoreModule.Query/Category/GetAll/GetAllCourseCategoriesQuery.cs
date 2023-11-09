@@ -21,6 +21,7 @@ class GetAllCourseCategoriesQueryHandler : IQueryHandler<GetAllCourseCategoriesQ
     {
         return await _queryContext.Categories
            .Where(r => r.ParentId == null)
+           .Include(r=>r.Children)
            .OrderByDescending(r => r.CreationDate)
            .Select(r => new CourseCategoryDto()
            {
@@ -28,7 +29,15 @@ class GetAllCourseCategoriesQueryHandler : IQueryHandler<GetAllCourseCategoriesQ
                CreationDate = r.CreationDate,
                ParentId = r.ParentId,
                Title = r.Title,
-               Slug = r.Slug
+               Slug = r.Slug,
+               Children = r.Children.Select(s=>new CourseCategoryChildDto()
+               {
+                   Id = s.Id,
+                   Title = s.Title,
+                   Slug = s.Slug,
+                   CreationDate = s.CreationDate,
+                   ParentId = s.ParentId
+               }).ToList()
 
            }).ToListAsync(cancellationToken);
     }

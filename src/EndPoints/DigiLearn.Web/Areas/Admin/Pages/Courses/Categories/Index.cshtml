@@ -10,25 +10,51 @@
         <table class="table table-bordered table-hover mb-0">
             <thead class="thead-light">
                 <tr>
-                    <th>#</th>
-                    <th>#</th>
-                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>اسلاگ</th>
+                    <th>عملیات</th>
                 </tr>
             </thead>
             <tbody>
-              @foreach(var item in Model.Categories)
+                @foreach (var item in Model.Categories.Where(r => r.ParentId == null))
                 {
                     <tr>
-                        <td>@item.Title</td>
-                        <td>@item.Slug</td>
-                        <td>
-                            <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-success mb-1">ویرایش</a>
-                            <delete-item ></delete-item>
-                        </td>
+                        <div class="card-header" id="h_@item.Id">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id">
+                                    @item.Title
+                                </button>
+                            </h5>
+                        </div>
+                
+
+                        <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#accordion">
+
+                            @foreach (var child in item.Children)
+                            {
+                                <tr>
+                                    <td>@child.Title</td>
+                                    <td>@child.Slug</td>
+                                    <td>
+                                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
+                                        <delete-item></delete-item>
+                                    </td>
+                                </tr>
+                            }
+                        </div>
                     </tr>
                 }
             </tbody>
-        </table>
-    </div>
-    @* <partial name="_pagination" model="null" /> *@
+    </table>
 </div>
+                                    </div>
+
+@*         <tr>
+            <td>@item.Title</td>
+            <td>@item.Slug</td>
+            <td>
+                <a asp-page="Add" asp-route-parentId="@item.Id" class="btn btn-primary btn-sm mb-1">افزودن زیردسته بندی</a>
+                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
+                <delete-item></delete-item>
+            </td>
+        </tr> *@

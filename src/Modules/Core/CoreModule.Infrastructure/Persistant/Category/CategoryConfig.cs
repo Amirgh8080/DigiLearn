@@ -17,6 +17,9 @@ public class CategoryConfig : IEntityTypeConfiguration<CourseCategory>
             .HasMaxLength(100)
             .IsUnicode(false);
 
+        builder.HasMany<CourseCategory>()
+            .WithOne().OnDelete(DeleteBehavior.Restrict)
+            .HasForeignKey(r => r.ParentId);
 
     }
 }
