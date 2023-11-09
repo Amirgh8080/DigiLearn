@@ -3,6 +3,7 @@
 @{
     ViewData["title"] = "مدیریت دسته بندی ها";
     ViewData["selected"] = "courses_categories";
+    bool collapse = false;
 }
 <a asp-page="Add" class="btn btn-success mb-1">افزودن دسته بندی جدید</a>
 <div class="card">
@@ -10,51 +11,60 @@
         <table class="table table-bordered table-hover mb-0">
             <thead class="thead-light">
                 <tr>
-                    <th>عنوان</th>
-                    <th>اسلاگ</th>
-                    <th>عملیات</th>
+                    <td>عنوان</td>
+                    <td>اسلاگ</td>
+                    <td>عملیات</td>
+                    <td class="hidden"></td>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Categories.Where(r => r.ParentId == null))
+                @foreach (var item in Model.Categories.Where(c => c.ParentId == null))
                 {
                     <tr>
-                        <div class="card-header" id="h_@item.Id">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id">
-                                    @item.Title
-                                </button>
-                            </h5>
-                        </div>
-                
-
-                        <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#accordion">
-
-                            @foreach (var child in item.Children)
-                            {
-                                <tr>
-                                    <td>@child.Title</td>
-                                    <td>@child.Slug</td>
-                                    <td>
-                                        <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
-                                        <delete-item></delete-item>
-                                    </td>
-                                </tr>
-                            }
-                        </div>
+                        <td>@item.Title</td>
+                        <td>@item.Slug</td>
+                        <td>
+                            <a asp-page="Add" asp-route-parentId="@item.Id" class="btn btn-primary btn-sm mb-1">افزودن زیردسته بندی</a>
+                            <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
+                            <delete-item>حذف</delete-item>
+                            <button class="btn btn-primary btn-sm mb-1" data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id" onclick="collapseTrue()">
+                                مشاهده زیرگره ها
+                            </button>
+                        </td>
                     </tr>
+
+                    @*   <table>
+
+                <tbody> *@
+                    @if(collapse){
+                    @foreach (var child in item.Children)
+                    {
+                        <tr id="parent-cp">
+                            <td>
+                                <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#parent-cp">
+                                    @item.Title
+                                    @item.Slug
+                                    <delete-item>حذف</delete-item>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    @* </tbody>
+                </table> *@
+                    }
+
+
                 }
             </tbody>
-    </table>
+        </table>
+    </div>
 </div>
-                                    </div>
 
-@*         <tr>
-            <td>@item.Title</td>
-            <td>@item.Slug</td>
-            <td>
-                <a asp-page="Add" asp-route-parentId="@item.Id" class="btn btn-primary btn-sm mb-1">افزودن زیردسته بندی</a>
-                <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
-                <delete-item></delete-item>
-            </td>
-        </tr> *@
+@section Scripts{
+    <script>
+        function collapseTrue(){
+            @collapse = true;
+
+        }
+    </script>
+}
