@@ -28,13 +28,25 @@ namespace DigiLearn.Web.Areas.Admin.Pages.Courses.Categories
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost(Guid? parentId)
         {
-            var result = await _courseCategoryFacade.Create(new CreateCategoryCommand()
+           if(parentId == null)
             {
-                Title = Title,
-                Slug = Slug.ToSlug()
-            } );
+                var result = await _courseCategoryFacade.Create(new CreateCategoryCommand()
+                {
+                    Title = Title,
+                    Slug = Slug.ToSlug()
+                });
+            }
+            else
+            {
+                var result = await _courseCategoryFacade.AddChild(new CoreModule.Application.Categories.AddChild.AddChildCategoryCommand()
+                {
+                    Title = Title,
+                    Slug = Slug.ToSlug(),
+                    ParentId = (Guid)parentId
+                });
+            }
 
             return RedirectAndShowAlert(result, RedirectToPage("Index"));
         }
