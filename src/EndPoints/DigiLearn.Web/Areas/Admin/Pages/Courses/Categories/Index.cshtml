@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{handler?}"
 @model DigiLearn.Web.Areas.Admin.Pages.Courses.Categories.IndexModel
 @{
     ViewData["title"] = "مدیریت دسته بندی ها";
@@ -24,10 +24,10 @@
                         <td>@item.Title</td>
                         <td>@item.Slug</td>
                         <td>
-                            <a asp-page="Add" asp-route-parentId="@item.Id" class="btn btn-primary btn-sm mb-1">افزودن زیردسته بندی</a>
-                            <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm mb-1">ویرایش</a>
-                            <delete-item>حذف</delete-item>
-                            <button class="btn btn-primary btn-sm mb-1" data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id" onclick="collapseTrue()">
+                            <a asp-page="Add" asp-route-parentId="@item.Id" class="btn btn-primary btn-sm ">افزودن زیردسته بندی</a>
+                            <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm ">ویرایش</a>
+                            <delete-item url="@Url.Page("Index","Delete",new {id = item.Id})">حذف</delete-item>
+                            <button class="btn btn-primary btn-sm " data-toggle="collapse" data-target="#a_@item.Id" aria-expanded="true" aria-controls="a_@item.Id" onclick="collapseTrue()">
                                 مشاهده زیرگره ها
                             </button>
                         </td>
@@ -44,7 +44,7 @@
                                 <div id="a_@item.Id" class="collapse" aria-labelledby="h_@item.Id" data-parent="#parent-cp">
                                     @item.Title
                                     @item.Slug
-                                    <delete-item>حذف</delete-item>
+                                        <delete-item url="@Url.Page("Index","Delete",new {id = child.Id})">حذف</delete-item>
                                 </div>
                             </td>
                         </tr>

@@ -1,12 +1,48 @@
+﻿using CoreModule.Facade.Category;
+using DigiLearn.Web.Infrastructure.RazorUtils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
 
 namespace DigiLearn.Web.Areas.Admin.Pages.Courses.Categories
 {
-    public class EditModel : PageModel
+    [BindProperties]
+    public class EditModel : BaseRazor
     {
-        public void OnGet()
+        private readonly ICourseCategoryFacade _categoryFacade;
+
+        public EditModel(ICourseCategoryFacade categoryFacade)
         {
+            _categoryFacade = categoryFacade;
+        }
+
+        [Display(Name = "عنوان")]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        public string Title { get; set; }
+        [Display(Name = "اسلاگ")]
+        [Required(ErrorMessage = "{0} را وارد کنید")]
+        public string Slug { get; set; }
+
+        public async Task<IActionResult> OnGet(Guid id)
+        {
+            var category = await _categoryFacade.GetCourseCategoryById(id);
+            if(category == null)
+                return RedirectToPage("Index");
+
+            Title = category.Title;
+            Slug = category.Slug;
+
+            return Page();
+        }
+        public async Task<IActionResult> OnPost(Guid id)
+        {
+            var result = await _categoryFacade.Edit(new CoreModule.Application.Categories.Edit.EditCategoryCommand()
+            {
+                Slug = Slug,
+                Title = Title,
+                Id = id
+            });
+            return RedirectAndShowAlert(result, RedirectToPage("Index"));
         }
     }
 }

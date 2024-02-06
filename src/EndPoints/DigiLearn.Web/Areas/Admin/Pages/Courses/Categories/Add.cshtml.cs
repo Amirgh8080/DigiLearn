@@ -28,11 +28,12 @@ namespace DigiLearn.Web.Areas.Admin.Pages.Courses.Categories
         public void OnGet()
         {
         }
-        public async Task<IActionResult> OnPost(Guid? parentId)
+        public async Task<IActionResult> OnPost([FromQuery]Guid? parentId)
         {
-           if(parentId == null)
+            var result = new Common.Application.OperationResult();
+            if (parentId == null)
             {
-                var result = await _courseCategoryFacade.Create(new CreateCategoryCommand()
+                result = await _courseCategoryFacade.Create(new CreateCategoryCommand()
                 {
                     Title = Title,
                     Slug = Slug.ToSlug()
@@ -40,7 +41,7 @@ namespace DigiLearn.Web.Areas.Admin.Pages.Courses.Categories
             }
             else
             {
-                var result = await _courseCategoryFacade.AddChild(new CoreModule.Application.Categories.AddChild.AddChildCategoryCommand()
+                result = await _courseCategoryFacade.AddChild(new CoreModule.Application.Categories.AddChild.AddChildCategoryCommand()
                 {
                     Title = Title,
                     Slug = Slug.ToSlug(),

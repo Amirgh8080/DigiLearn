@@ -59,6 +59,9 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
+    <div id="token-value">
+        @Html.AntiForgeryToken()
+    </div>
 
     <script src="/admin/vendors/js/vendors.min.js"></script>
     <script src="/admin/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js"></script>
@@ -78,15 +81,13 @@
     <script src="/admin/js/scripts/components.js"></script>
     <script src="/admin/js/scripts/footer.js"></script>
     <script src="/admin/js/scripts/customizer.js"></script>
-    <script src="/assets/js/plugins/sweetalert2.all.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="/global.js"></script>
+    <script src="/global/global.js"></script>
     <script src="/admin/js/custom.js"></script>
     <partial name="Shared/_ValidationScriptsPartial" />
     <script src="/global/clientValidation.js"></script>
-    <div id="ajax-token">
-        @Html.AntiForgeryToken()
-    </div>
+  
     @await RenderSectionAsync("Scripts",false)
 </body>
 </html>

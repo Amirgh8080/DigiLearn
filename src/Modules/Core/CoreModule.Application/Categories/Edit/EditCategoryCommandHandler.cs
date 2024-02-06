@@ -1,4 +1,5 @@
 ﻿using Common.Application;
+using Common.Domain.Utils;
 using CoreModule.Domain.Categories.DomainServices;
 using CoreModule.Domain.Categories.Repository;
 
@@ -21,7 +22,7 @@ public class EditCategoryCommandHandler : IBaseCommandHandler<EditCategoryComman
         if (category == null)
             return OperationResult.NotFound();
 
-        category.Edit(request.Title, request.Slug, _categoryDomainService);
+        category.Edit(request.Title, request.Slug.ToSlug(), _categoryDomainService);
         await _categoryRepository.Save();
         return OperationResult.Success();
     }
