@@ -1,21 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.1.0" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Category\GetAll\" />
+		<Folder Include="Category\GetChildren\" />
+		<Folder Include="Category\_DTOs\" />
+		<Folder Include="Course\GetByFilter\" />
+		<Folder Include="Course\GetById\" />
+		<Folder Include="Course\GetBySlug\" />
+		<Folder Include="Course\_DTOs\" />
+		<Folder Include="Order\GetCurrent\" />
+		<Folder Include="Order\GetByFilter\" />
+		<Folder Include="Order\GetById\" />
+		<Folder Include="_DTOs\" />
+		<Folder Include="Teacher\GetById\" />
+		<Folder Include="Teacher\GetByUserId\" />
+		<Folder Include="Teacher\GetList\" />
+		<Folder Include="Teacher\_DTOs\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common.Query\Common.Query.csproj" />
-    <ProjectReference Include="..\CoreModule.Domain\CoreModule.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\Common.Query\Common.Query.csproj" />
+		<ProjectReference Include="..\CoreModule.Domain\CoreModule.Domain.csproj" />
+	</ItemGroup>
 
 </Project>
