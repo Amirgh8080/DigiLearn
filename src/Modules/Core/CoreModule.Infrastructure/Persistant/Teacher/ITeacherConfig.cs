@@ -18,9 +18,10 @@ public class ITeacherConfig : IEntityTypeConfiguration<Domain.Teacher.Models.Tea
             .IsRequired()
             .IsUnicode(false)
             .HasMaxLength(25);
+
         builder.Property(b => b.CvFileName)
             .IsRequired()
-            .HasMaxLength(50);
+            .HasMaxLength(60);
 
         builder.HasOne<User>()
             .WithOne()

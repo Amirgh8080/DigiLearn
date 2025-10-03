@@ -1,0 +1,25 @@
+﻿@page "{CourseId}"
+@model DigiLearn.Web.Pages.Profile.Teacher.Courses.Sections.AddModel
+@{
+    ViewData["Title"] = "اضافه کردن فصل جدید";
+    Layout = "Shared/_ProfileLayout";
+}
+<div class="row ">
+    <div class="col-12 info shadow pl-0 pr-0">
+        <p class="title">
+            <i class="fa fa-paper-plane"></i>
+            @ViewData["Title"]
+        </p>
+         <form method="post" class="row">
+            <div class="col-md-6">
+                @Html.EditorFor(t=>t.Title)
+            </div> <div class="col-md-6">
+                @Html.EditorFor(t=>t.DisplayOrder)
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-save my-3">ثبت اطلاعات</button>
+            </div>
+        </form>
+    </div>
+</div>

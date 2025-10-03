@@ -15,9 +15,9 @@ public class Course : AggregateRoot
     }
     public Course(Guid teacherId, string title, string description, string imageName, string trailerName, int price,
         SeoData seoData, CourseLevel courseLevel, Guid subCategoryId, Guid categoryId, string slug
-        ,CourseActionStatus status ,ICourseDomainService domainService)
+        , CourseActionStatus status, ICourseDomainService domainService)
     {
-        Guard(title, description, imageName, trailerName,slug);
+        Guard(title, description, imageName, trailerName, slug);
         if (domainService.DoesSlugExists(slug))
             throw new InvalidDomainDataException("Slug Already Exists");
 
@@ -36,8 +36,8 @@ public class Course : AggregateRoot
         SubCategoryId = subCategoryId;
         CategoryId = categoryId;
         Slug = slug.ToSlug();
-        
-        
+
+
         Sections = new();
     }
 
@@ -61,12 +61,12 @@ public class Course : AggregateRoot
     public List<Section> Sections { get; private set; }
 
 
-    public void Edit( string title, string description, string imageName, string trailerName, int price,
-        SeoData seoData, CourseLevel courseLevel,CourseStatus status, Guid subCategoryId, Guid categoryId, string slug
+    public void Edit(string title, string description, string imageName, string trailerName, int price,
+        SeoData seoData, CourseLevel courseLevel, CourseStatus status, Guid subCategoryId, Guid categoryId, string slug
         , ICourseDomainService domainService)
     {
         Guard(title, description, imageName, trailerName, slug);
-        if(Slug != slug)
+        if (Slug != slug)
         {
             if (domainService.DoesSlugExists(slug))
                 throw new InvalidDomainDataException("Slug Already Exists");
@@ -112,7 +112,7 @@ public class Course : AggregateRoot
         Sections.Remove(section);
     }
 
-    public void AddEpisode(Guid sectiontId, string title, Guid token, TimeSpan timeSpan, string videoExtension
+    public Episode AddEpisode(Guid sectiontId, string title, Guid token, TimeSpan timeSpan, string videoExtension
         , string? attachmentExtension, bool isActive, string englishTitle)
     {
 
@@ -125,7 +125,7 @@ public class Course : AggregateRoot
         var episodeTitle = $"{episodeCount + 1}_{englishTitle}";
 
         string attName = null;
-        if (string.IsNullOrEmpty(attName) == false)
+        if (string.IsNullOrEmpty(attachmentExtension) == false)
             attName = $"{episodeTitle}.{attachmentExtension}";
 
         string videoName = $"{episodeTitle}.{videoExtension}";
@@ -137,7 +137,7 @@ public class Course : AggregateRoot
                 CourseStatus = CourseStatus.InProgress;
         }
 
-        section.AddEpisode(title, token, timeSpan, videoName, attName, isActive, englishTitle);
+        return section.AddEpisode(title, token, timeSpan, videoName, attName, isActive, englishTitle);
     }
 
     public void AcceptEpisode(Guid episodeId)
@@ -156,7 +156,7 @@ public class Course : AggregateRoot
         Price = price;
     }
 
-    void Guard(string title, string description, string imageName, string trailerName,string slug)
+    void Guard(string title, string description, string imageName, string trailerName, string slug)
     {
         NullOrEmptyDomainDataException.CheckString(title, nameof(title));
         NullOrEmptyDomainDataException.CheckString(description, nameof(description));

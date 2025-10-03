@@ -11,8 +11,11 @@ var services = builder.Services;
 // Add services to the container.
 builder.Services.AddScoped<ILocalFileService, LocalFileService>();
 builder.Services.AddScoped<IFtpFileService, FtpFileService>();
+
 builder.Services.AddTransient<TeacherActionFilter>();
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages()
+    .AddRazorRuntimeCompilation();
+
 builder.Services.InitUserModule(builder.Configuration);
 builder.Services.InitTicketModule(builder.Configuration);
 builder.Services.InitCoreModule(builder.Configuration);
@@ -47,6 +50,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapRazorPages();
+app.MapDefaultControllerRoute();
 
 app.Run();

@@ -47,6 +47,8 @@ namespace CoreModule.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentId");
+
                     b.HasIndex("Slug")
                         .IsUnique();
 
@@ -90,6 +92,9 @@ namespace CoreModule.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("SubCategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -125,8 +130,8 @@ namespace CoreModule.Infrastructure.Migrations
 
                     b.Property<string>("CvFileName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -188,6 +193,14 @@ namespace CoreModule.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", "dbo");
+                });
+
+            modelBuilder.Entity("CoreModule.Domain.Categories.Models.CourseCategory", b =>
+                {
+                    b.HasOne("CoreModule.Domain.Categories.Models.CourseCategory", null)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("CoreModule.Domain.Course.Models.Course", b =>

@@ -75,7 +75,7 @@ public class AddModel : BaseRazor
         var result = await _courseFacade.Create(new CreateCourseCommand()
         {
             Status = CourseActionStatus.Pending,
-            TeacherId = teacher.Id,
+            TeacherId = teacher!.Id,
             CategoryId = CategoryId,
             CourseLevel = CourseLevel,
             Description = Description,

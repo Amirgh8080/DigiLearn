@@ -33,17 +33,17 @@
                     <option value="@CourseLevel.Intermediate">متوسط</option>
                     <option value="@CourseLevel.Expert">پیشرفته</option>
                 </select>
-            </div> 
+            </div>
             <div class="col-md-6">
                 <label asp-for="CategoryId"></label>
                 <select asp-for="CategoryId" class="form-control select2">
                     <option>انتخاب کنید</option>
-                  @foreach(var item in categories)
+                    @foreach (var item in categories)
                     {
                         <option value="@item.Id">@item.Title</option>
                     }
                 </select>
-            </div> 
+            </div>
             <div class="col-md-6">
                 <label asp-for="SubCategoryId "></label>
                 <select asp-for="SubCategoryId" class="form-control select2">
@@ -68,16 +68,16 @@
 </div>
 
 @section Scripts
-{
+    {
     <script>
         $("#CategoryId").change(function () {
             var id = $(this).val();
             $.ajax({
-                url:"/ajax/getCategoryChildren?id="+id,
-                method:"get"
+                url: "/ajax/getCategoryChildren?id=" + id,
+                method: "get"
             }).done(function (data) {
-                $("#SubCategoryId").html(data)
+                $("#SubCategoryId").html(data);
             });
-        })
+        });
     </script>
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CoreModule.Query._Data.Entities;
 
-[Table("Users", Schema = "dbo")]
+[Table("Teachers", Schema = "dbo")]
 class TeacherQueryModel : BaseEntity
 {
     public Guid UserId { get; set; }

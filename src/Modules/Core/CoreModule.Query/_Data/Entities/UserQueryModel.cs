@@ -11,14 +11,16 @@ class UserQueryModel : BaseEntity
     public string PhoneNumber { get; set; }
 
     [MaxLength(50)]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [MaxLength(50)]
-    public string Family { get; set; }
+    public string? Family { get; set; }
 
     [MaxLength(110)]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [MaxLength(110)]
     public string Avatar { get; set; }
+
+   
 }
